@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "certificates.rapidteam.io/static/css/main.d62d7317.chunk.css",
+    "main.js": "certificates.rapidteam.io/static/js/main.5c0814da.chunk.js",
+    "main.js.map": "certificates.rapidteam.io/static/js/main.5c0814da.chunk.js.map",
+    "runtime-main.js": "certificates.rapidteam.io/static/js/runtime-main.0a229f9c.js",
+    "runtime-main.js.map": "certificates.rapidteam.io/static/js/runtime-main.0a229f9c.js.map",
+    "static/js/2.65034eea.chunk.js": "certificates.rapidteam.io/static/js/2.65034eea.chunk.js",
+    "static/js/2.65034eea.chunk.js.map": "certificates.rapidteam.io/static/js/2.65034eea.chunk.js.map",
+    "index.html": "certificates.rapidteam.io/index.html",
+    "precache-manifest.76a871979c51c271b59e6919b2bdb5e0.js": "certificates.rapidteam.io/precache-manifest.76a871979c51c271b59e6919b2bdb5e0.js",
+    "service-worker.js": "certificates.rapidteam.io/service-worker.js",
+    "static/css/main.d62d7317.chunk.css.map": "certificates.rapidteam.io/static/css/main.d62d7317.chunk.css.map",
+    "static/js/2.65034eea.chunk.js.LICENSE": "certificates.rapidteam.io/static/js/2.65034eea.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0a229f9c.js",
+    "static/js/2.65034eea.chunk.js",
+    "static/css/main.d62d7317.chunk.css",
+    "static/js/main.5c0814da.chunk.js"
+  ]
+}
