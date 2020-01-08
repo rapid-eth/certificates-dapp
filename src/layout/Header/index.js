@@ -14,6 +14,8 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { mainListItems } from "./menuList";
+
 // import { Link } from "@reach/router"
 
 const drawerWidth = 240;
@@ -135,8 +137,13 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Certificates Dapp
+            "pretty cool dApp"
           </Typography>
+          <IconButton color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -151,17 +158,8 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Link href="/">
-          <List>Home</List>
-        </Link>
         <Divider />
-        <Link href="/deploy">
-          <List>Deploy</List>
-        </Link>
-        <Divider />
-        <Link href="/token">
-          <List>Token</List>
-        </Link>
+        <List>{mainListItems}</List>
         <Divider />
       </Drawer>
     </div>
