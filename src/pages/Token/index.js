@@ -6,10 +6,9 @@ import TokenMeta from "../../components/TokenMeta"
 import CreateCertificateType from "../../components/forms/CreateCertificateType"
 import CreateCertificate from "../../components/forms/CreateCertificate"
 import RedeemCertificate from "../../components/forms/RedeemCertificate"
-import {getLocalStorageArray} from "../../utils/localStorage"
+import ChooseToken from "../../components/forms/ChooseToken"
 
 import "./index.css"
-
 
 class Token extends Component {
 
@@ -88,96 +87,6 @@ class Token extends Component {
   }
 }
 
-
-
-class ChooseToken extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectorTokens: [],
-      coinABI: null,
-      selectorTokenChoice: null
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.afterMount = this.afterMount.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-
-  async componentDidMount() {
-    let abi = this.props.exampleCoin.interface.abi
-    this.setState({coinABI: abi}, this.afterMount)
-  }
-  
-  afterMount() {
-    this.addToken(this.props.exampleCoin.address)
-    let tokenAddressArray = getLocalStorageArray("CERTIFICATE_TOKEN_LIST")
-    console.log(tokenAddressArray)
-    tokenAddressArray.forEach(t => {
-      this.addToken(t)
-    });
-  }
-
-  async addToken(address) {
-    
-    let contract = new ethers.Contract(address, this.state.coinABI, this.props.provider);
-    let symbol = await contract.symbol()
-    let name = await contract.name()
-
-    let token = {address, name, symbol}
-    console.log(token)
-    this.setState({ selectorTokens: [...this.state.selectorTokens, token] })
-  }
-
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    window.location.href = `/token/${this.state.selectorTokenChoice}`;
-  }
-
-  getSelector() {
-    const { selectorTokens } = this.state
-
-
-    return (
-      <select name="selectorTokenChoice" onChange={this.handleChange}>
-        <option key={"-1"} value={""}>Please select a token...</option>
-
-        {selectorTokens.map((token, idx) => {
-          if (token) {
-            return (
-              <option key={idx} value={token.address}>{token.name} - {token.symbol} - {token.address}</option>
-            )
-          } else return null
-
-        })}
-      </select>
-    );
-  }
-
-
-  render() {
-    return (
-      <div>
-        <h2>Token Finder</h2>
-        <form onSubmit={this.handleSubmit}>
-        {this.getSelector()}
-        <br></br>
-        <input type="submit" value="Go to Token" />
-
-        </form>
-
-        <br></br>
-        <br></br>
-      </div>
-    )
-  }
-}
 
 
 const TokenConsumer = (props) => (

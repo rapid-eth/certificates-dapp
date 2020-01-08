@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { isHexAddress } from "../../../web3/web3Utils";
+
 import "./index.css"
 class CreateForm extends Component {
     constructor(props) {
@@ -7,7 +9,9 @@ class CreateForm extends Component {
             amount: null,
             delegates: [],
             metadata: null,
-            notOwner: false
+            notOwner: false,
+            delegateFields: [],
+            delegateLength: 1,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,9 +31,14 @@ class CreateForm extends Component {
     }
 
     handleChange(event) {
+        console.log(this.state)
+
         if (event.target.name === "delegates") {
-            let delegates = [event.target.value]
-            this.setState({ delegates });
+            let delegateFields = this.state.delegateFields
+            let i = event.target.id
+            delegateFields[i] = event.target.value
+            console.log(this.state)
+            this.setState({ delegateFields });
 
         } else {
             this.setState({ [event.target.name]: event.target.value });
@@ -38,6 +47,9 @@ class CreateForm extends Component {
 
     addNewDelegateField() {
         console.log("adding new delegate")
+        let newFields = this.state.delegateFields
+        newFields.push("")
+        this.setState({ delegateFields: newFields })
     }
 
     handleSubmit(event) {
@@ -45,10 +57,20 @@ class CreateForm extends Component {
         this.submitTransaction()
     }
     submitTransaction = async () => {
-        const { amount, delegates, metadata } = this.state
-        delegates.push(window.ethereum.selectedAddress)
-        await this.props.contract.createCertificateType(amount, delegates, metadata)
-        document.getElementById(this.props.id).reset();
+        const { amount, delegateFields, metadata } = this.state
+        try {
+            delegateFields.forEach((df,i) => {
+                if (!isHexAddress(df)) {
+                    throw "Delegate Field " + i + " is not a valid address"
+                }
+            })
+            //delegateFields.push(window.ethereum.selectedAddress)
+            await this.props.contract.createCertificateType(amount, delegateFields, metadata)
+            document.getElementById(this.props.id).reset();
+        } catch (err) {
+            alert(err.toString())
+        }
+
     };
 
 
@@ -70,14 +92,16 @@ class CreateForm extends Component {
             <input name="metadata" type="text" onChange={this.handleChange} />
                 </label>
                 <br></br>
-                {/* <label>
-                    Delegate:
-            <input name="delegates" type="text" onChange={this.handleChange} />
+                <label>
+                    Delegates:
+                 {this.state.delegateFields.map((d, fId) => {
+                     return (<div key={fId}><input id={fId} name="delegates" type="text" onChange={this.handleChange} /><br></br></div>)
+                 })}
                 </label>
                 <div className="add-delegate-div" onClick={this.addNewDelegateField}>
                     <span>+</span>
                 </div>
-                <br></br> */}
+                <br></br>
                 <input type="submit" value="Submit" disabled={this.state.notOwner} />
             </form>
         );

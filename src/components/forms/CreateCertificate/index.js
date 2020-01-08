@@ -150,7 +150,7 @@ class CreateForm extends Component {
                     </label>
                     <br></br>
 
-                    <input type="submit" value="Create Certificate" disabled={this.state.notOwner} />
+                    <input type="submit" value="Create Certificate" />
                 </form>
                 {
                     this.state.isCertSigned ? <div><pre><code>{JSON.stringify(this.state.signedCertificate, 0, 2)}</code></pre><button onClick={this.downloadCert}>Download Certificate</button> </div>: null
