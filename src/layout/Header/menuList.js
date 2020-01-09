@@ -9,26 +9,23 @@ import Link from "@material-ui/core/Link";
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button component="a" href="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Home" />
-      <Link href="/">Home</Link>
     </ListItem>
-    <ListItem button to="/token">
+    <ListItem button component="a" href="/deploy">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Deploy Token" to="/deploy" />
-      <Link href="/deploy">Deploy</Link>
+      <ListItemText primary="Deploy Token" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/token">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Token Finder" href="/token" />
-      <Link href="/token">Token</Link>
     </ListItem>
   </div>
 );

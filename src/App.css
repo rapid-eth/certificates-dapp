@@ -1,7 +1,6 @@
-/* html {
-  height: 100vh;
-  width: 100vw;
-} */
+html {
+  background-color: ligtgrey;
+}
 
 .App {
   text-align: center;

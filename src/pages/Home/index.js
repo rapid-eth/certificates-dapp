@@ -21,7 +21,6 @@ const useStyles = makeStyles({
 
 export default function Home() {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card} variant="outlined">
@@ -31,9 +30,7 @@ export default function Home() {
           color="textSecondary"
           gutterBottom
           component="h2"
-        >
-          Home Page
-        </Typography>
+        ></Typography>
         <Typography variant="h5" component="h2">
           Hello and welcome
         </Typography>
