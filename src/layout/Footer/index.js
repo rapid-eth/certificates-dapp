@@ -10,13 +10,14 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "grey"
+    justifyContent: "end",
+    backgroundColor: "grey",
+    position: "relative",
+    height: "100px"
   }
 });
-
 function createData(name) {
   return { name };
 }
@@ -29,9 +30,6 @@ export default function Footer() {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow></TableRow>
-        </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow key={row.name}>

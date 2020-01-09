@@ -21,7 +21,7 @@ import Paper from "@material-ui/core/Paper";
 
 // import { Link } from "@reach/router"
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
     }),
     width: theme.spacing(7),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
+      width: theme.spacing(0)
     }
   },
   appBarSpacer: theme.mixins.toolbar,

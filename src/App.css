@@ -1,5 +1,7 @@
 html {
   background-color: ligtgrey;
+  border: 10px solid pink;
+  height: 100vh;
 }
 
 .App {

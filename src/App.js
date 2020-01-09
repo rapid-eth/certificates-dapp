@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./layout/Header";
+import Body from "./layout/Body";
 import Footer from "./layout/Footer";
 import "./App.css";
 import { createHistory, LocationProvider, Router } from "@reach/router";
@@ -20,6 +21,7 @@ function App() {
       <MyWeb3Provider>
         <MuiThemeProvider theme={theme}>
           <Header />
+          <Body>Body</Body>
           <Router>
             <Home path="/" />
             <TokenList path="/list" />
@@ -29,7 +31,9 @@ function App() {
           </Router>
         </MuiThemeProvider>
       </MyWeb3Provider>
-      <Footer />
+      <MuiThemeProvider theme={theme}>
+        <Footer />
+      </MuiThemeProvider>
     </div>
   );
 }

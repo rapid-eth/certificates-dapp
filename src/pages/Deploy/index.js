@@ -7,6 +7,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
 import "./index.css";
 
 const useStyles = theme => ({
@@ -19,7 +22,7 @@ const useStyles = theme => ({
   title: {
     color: "black",
     textAlign: "center",
-    border: "2px solid grey",
+    border: "2px solid blue",
     boxShadow: "5px 5px #888888"
   },
   pos: {
@@ -52,12 +55,20 @@ const Admin = props => (
         return <div>Loading form</div>;
       }
       return (
-        <div className="admin-page">
-          <h1 className="title">Admin Page</h1>
+        <MuiThemeProvider>
+          <form>
+            <TextField
+              hintText="Hint text"
+              floatingLabelText="Fixed Floating label text"
+              floatingLabelFixed={true}
+            />
+            <div className="admin-page">
+              <h1 className="title">Admin Page</h1>
 
-          <h3>Fill out the form below to create a new token</h3>
-          <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
-        </div>
+              <h3>Fill out the form below to create a new token</h3>
+            </div>
+          </form>
+        </MuiThemeProvider>
       );
     }}
   </MyWeb3Consumer>
