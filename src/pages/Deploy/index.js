@@ -8,12 +8,35 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./index.css";
+
+const useStyles = theme => ({
+  card: {
+    border: "5px solid blue",
+    display: "flex",
+    justifyContent: "center"
+  },
+
+  title: {
+    color: "black",
+    textAlign: "center",
+    border: "2px solid grey",
+    boxShadow: "5px 5px #888888"
+  },
+  pos: {
+    marginBottom: 12
+  },
+  border: {
+    border: "5px solid blue"
+  }
+});
 class Admin1 extends Component {
   componentDidMount = async () => {
     // console.log("create component", this.props.tokenContract.options)
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <DeployNewToken />

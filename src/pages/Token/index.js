@@ -12,8 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-
-import "./index.css";
+import Button from "@material-ui/core/Button";
 
 const useStyles = theme => ({
   card: {
@@ -115,7 +114,11 @@ class Token extends Component {
             />
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
+            <Button variant="contained" color="primary">
+              Primary
+            </Button>
             <h3>Create Certificate (delegate only)</h3>
+
             <CreateCertificate
               id="create-cert-form"
               contract={this.state.contract}
