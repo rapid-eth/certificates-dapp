@@ -114,9 +114,6 @@ class Token extends Component {
             />
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            <Button variant="contained" color="primary">
-              Primary
-            </Button>
             <h3>Create Certificate (delegate only)</h3>
 
             <CreateCertificate

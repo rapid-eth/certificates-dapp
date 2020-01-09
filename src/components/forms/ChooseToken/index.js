@@ -5,8 +5,15 @@ import { Select, FormControl, InputLabel, MenuItem } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import { getLocalStorageArray } from "../../../utils/localStorage";
 import { isHexAddress } from "../../../web3/web3Utils";
-
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 const styles = theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  },
   chooser: {
     minWidth: 400
   }
@@ -86,7 +93,7 @@ class ChooseToken extends Component {
 
   getSelector() {
     const { selectorTokens } = this.state;
-    
+
     return (
       <div>
         <FormControl className={this.props.classes.chooser}>
@@ -113,6 +120,8 @@ class ChooseToken extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     console.log(this.state);
     return (
       <div>
@@ -122,15 +131,16 @@ class ChooseToken extends Component {
           <br></br>
           <span>OR</span>
           <br></br>
-          <label>
-            Add your own:
-            <input
+          <form className={classes.root} noValidate autoComplete="off">
+            <TextField
+              id="standard-basic"
+              label="Add your own:"
               name="manualToken"
               value={this.state.manualToken}
               type="text"
               onChange={this.handleChange}
             />
-          </label>
+          </form>
           <br></br>
 
           <input type="submit" value="Go to Token" />
