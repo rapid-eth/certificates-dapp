@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import Dashboard from "./layout/Dashboard";
 import "./App.css";
 import { createHistory, LocationProvider, Router } from "@reach/router";
 import createHashSource from "hash-source";
@@ -20,7 +19,6 @@ function App() {
     <div className="app-class">
       <MyWeb3Provider>
         <Header />
-        <Dashboard />
         <Router>
           <Home path="/" />
           <TokenList path="/list" />

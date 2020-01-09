@@ -140,7 +140,7 @@ export default function Header() {
             noWrap
             className={classes.title}
           >
-            "pretty cool dApp"
+            "Token Mill"
           </Typography>
         </Toolbar>
       </AppBar>
