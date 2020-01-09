@@ -66,6 +66,10 @@ const Admin = props => (
               <h1 className="title">Admin Page</h1>
 
               <h3>Fill out the form below to create a new token</h3>
+              <DeployNewToken
+                id="new-token-form"
+                factory={exampleCoinFactory}
+              />
             </div>
           </form>
         </MuiThemeProvider>

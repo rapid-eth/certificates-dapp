@@ -8,14 +8,22 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    marginLeft: 250,
-    minWidth: 100
+    display: "flex",
+    border: "1px solid blue",
+    maxWidth: "100%",
+    minHeight: "300px"
   },
   title: {
     fontSize: 60
   },
   pos: {
     marginBottom: 12
+  },
+  body: {
+    display: "flex",
+    justifyContent: "center",
+    border: "1px solid green",
+    maxWidth: "100%"
   }
 });
 
@@ -23,25 +31,27 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card} variant="outlined">
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-          component="h2"
-        ></Typography>
-        <Typography variant="h5" component="h2">
-          Hello and welcome
-        </Typography>
-        <Typography variant="body2" component="p">
-          This is the certificates Dapp, it does x, y and z. Its a pretty cool
-          // dapp, I'll explain how it works eventually but for now this filler
-          // text will have to suffice.
-          <br />
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className={classes.body}>
+      <Card className={classes.card} variant="outlined">
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+            component="h2"
+          ></Typography>
+          <Typography variant="h5" component="h2">
+            Hello and welcome
+          </Typography>
+          <Typography variant="body2" component="p">
+            This is the certificates Dapp, it does x, y and z. Its a pretty cool
+            // dapp, I'll explain how it works eventually but for now this
+            filler // text will have to suffice.
+            <br />
+          </Typography>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 //     return (
