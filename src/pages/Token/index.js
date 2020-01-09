@@ -7,8 +7,34 @@ import CreateCertificateType from "../../components/forms/CreateCertificateType"
 import CreateCertificate from "../../components/forms/CreateCertificate";
 import RedeemCertificate from "../../components/forms/RedeemCertificate";
 import ChooseToken from "../../components/forms/ChooseToken";
+import { Card } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 
 import "./index.css";
+
+const useStyles = theme => ({
+  card: {
+    border: "5px solid blue",
+    display: "flex",
+    justifyContent: "center"
+  },
+
+  title: {
+    color: "black",
+    textAlign: "center",
+    border: "2px solid grey",
+    boxShadow: "5px 5px #888888"
+  },
+  pos: {
+    marginBottom: 12
+  },
+  border: {
+    border: "5px solid blue"
+  }
+});
 
 class Token extends Component {
   constructor(props) {
@@ -68,42 +94,51 @@ class Token extends Component {
     if (!this.state.contract) {
       return <div>{this.state.loadingMessage}</div>;
     }
+    const { classes } = this.props;
     return (
-      <div>
-        <div className="token-box-div">
-          <h3>Token Data</h3>
-          <TokenMeta contract={this.state.contract} />
-        </div>
-        <div className="token-box-div">
-          <h3>Create Certificate Type (admin only)</h3>
-          <CreateCertificateType
-            id="create-cert-type-form"
-            contract={this.state.contract}
-          />
-        </div>
-        <div className="token-box-div">
-          <h3>Create Certificate (delegate only)</h3>
-          <CreateCertificate
-            id="create-cert-form"
-            contract={this.state.contract}
-            provider={this.props.provider}
-            signer={this.props.signer}
-          />
-        </div>
-        <div className="token-box-div">
-          <h3>Redeem Certificate</h3>
-          <RedeemCertificate
-            id="redeem-cert-form"
-            contract={this.state.contract}
-            provider={this.props.provider}
-            signer={this.props.signer}
-          />
-        </div>
-      </div>
+      <Card className={classes.card} variant="outlined">
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            {" "}
+            <h1>Token Data</h1>
+            <TokenMeta contract={this.state.contract} />
+          </Typography>
+          <Typography variant="h5" component="h2">
+            <h3>Create Certificate Type (admin only)</h3>
+            <CreateCertificateType
+              id="create-cert-type-form"
+              contract={this.state.contract}
+            />
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            <h3>Create Certificate (delegate only)</h3>
+            <CreateCertificate
+              id="create-cert-form"
+              contract={this.state.contract}
+              provider={this.props.provider}
+              signer={this.props.signer}
+            />
+          </Typography>
+          <Typography variant="body2" component="p">
+            <h3>Redeem Certificate</h3>
+            <RedeemCertificate
+              id="redeem-cert-form"
+              contract={this.state.contract}
+              provider={this.props.provider}
+              signer={this.props.signer}
+            />
+          </Typography>
+        </CardContent>
+        <CardActions></CardActions>
+      </Card>
     );
   }
 }
-
+const TokenStyles = withStyles(useStyles)(Token);
 const TokenConsumer = props => (
   <MyWeb3Consumer>
     {({ loaded, networkId, signer, provider, exampleCoinContract }) => {
@@ -115,10 +150,11 @@ const TokenConsumer = props => (
           <ChooseToken exampleCoin={exampleCoinContract} provider={provider} />
         );
       }
+
       return (
         <div className="token-page">
           <h1>Token Page</h1>
-          <Token
+          <TokenStyles
             tokenAddress={props.tokenId}
             templateAddress={exampleCoinContract.address}
             networkId={networkId}
@@ -131,4 +167,4 @@ const TokenConsumer = props => (
   </MyWeb3Consumer>
 );
 
-export default TokenConsumer;
+export default withStyles(useStyles)(TokenConsumer);
