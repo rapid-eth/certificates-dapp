@@ -18,7 +18,7 @@ let history = createHistory(source);
 
 function App() {
   return (
-    <LocationProvider>
+    <LocationProvider history={history}>
       <div className="app-class">
         <MyWeb3Provider>
           <MuiThemeProvider theme={theme}>
