@@ -11,6 +11,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 import "./index.css";
+import classes from "*.module.css";
 
 const useStyles = theme => ({
   card: {
@@ -56,8 +57,11 @@ const Admin = props => (
       }
       return (
         <MuiThemeProvider>
-          <h1 className="title">Admin Page</h1>
-          <h3>Create a new token with the fields below</h3>
+          <Card>
+            <div className={this.props.classes.body}></div>
+            <h1 className="title">Admin Page</h1>
+            <h3>Create a new token with the fields below</h3>
+          </Card>
           <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
         </MuiThemeProvider>
       );

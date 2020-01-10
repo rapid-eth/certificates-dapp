@@ -18,24 +18,22 @@ let history = createHistory(source);
 
 function App() {
   return (
-    <LocationProvider history={history}>
-      <div className="app-class">
-        <MyWeb3Provider>
-          <MuiThemeProvider theme={theme}>
-            <Header />
-            <Body />
-            <Router>
-              <Home path="/" />
-              <TokenList path="/list" />
-              <Deploy path="/deploy" />
-              <TokenPage path="/token" />
-              <TokenPage path="/token/:tokenId" />
-            </Router>
-          </MuiThemeProvider>
-        </MyWeb3Provider>
-        <MuiThemeProvider theme={theme}></MuiThemeProvider>
-      </div>
-    </LocationProvider>
+    <div className="app-class">
+      <MyWeb3Provider>
+        <MuiThemeProvider theme={theme}>
+          <Header />
+        
+          <Router>
+            <Home path="/" />
+            <TokenList path="/list" />
+            <Deploy path="/deploy" />
+            <TokenPage path="/token" />
+            <TokenPage path="/token/:tokenId" />
+          </Router>
+        </MuiThemeProvider>
+      </MyWeb3Provider>
+      <MuiThemeProvider theme={theme}></MuiThemeProvider>
+    </div>
   );
 }
 

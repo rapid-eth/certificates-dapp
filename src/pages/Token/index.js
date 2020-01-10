@@ -17,8 +17,7 @@ import Button from "@material-ui/core/Button";
 const useStyles = theme => ({
   card: {
     display: "flex",
-    justifyContent: "center",
-    border: "5px solid green"
+    justifyContent: "center"
   },
 
   title: {
