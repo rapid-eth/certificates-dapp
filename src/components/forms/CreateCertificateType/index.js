@@ -121,6 +121,7 @@ class CreateForm extends Component {
         <Button
           type="submit"
           variant="contained"
+          color="primary"
           value="Submit"
           disabled={this.state.notOwner}
         >

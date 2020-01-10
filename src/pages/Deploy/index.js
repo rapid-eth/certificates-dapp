@@ -65,7 +65,7 @@ const Admin = props => (
             <div className="admin-page">
               <h1 className="title">Admin Page</h1>
 
-              <h3>Fill out the form below to create a new token</h3>
+              <h3>Create a new token with the fields below</h3>
               <DeployNewToken
                 id="new-token-form"
                 factory={exampleCoinFactory}

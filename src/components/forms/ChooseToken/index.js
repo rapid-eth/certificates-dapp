@@ -7,6 +7,7 @@ import { getLocalStorageArray } from "../../../utils/localStorage";
 import { isHexAddress } from "../../../web3/web3Utils";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
 const styles = theme => ({
   root: {
     "& > *": {
@@ -142,8 +143,9 @@ class ChooseToken extends Component {
             />
           </form>
           <br></br>
-
-          <input type="submit" value="Go to Token" />
+          <Button type="submit" variant="contained" value="Go to Token">
+            Go to Token
+          </Button>{" "}
         </form>
 
         <br></br>
