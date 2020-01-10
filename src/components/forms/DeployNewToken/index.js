@@ -8,12 +8,15 @@ import { Button } from "@material-ui/core";
 const styles = theme => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
+      margin: theme.spacing(2),
       width: 200
     }
   },
   chooser: {
     minWidth: 400
+  },
+  formBody: {
+    width: "100vw"
   }
 });
 class CreateForm extends Component {
@@ -67,8 +70,8 @@ class CreateForm extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <form
+      <div className={classes.formBody}>
+        <FormControl
           className={classes.root}
           id={this.props.id}
           noValidate
@@ -107,9 +110,16 @@ class CreateForm extends Component {
           {this.state.waiting ? (
             <div>Please Wait While Token Deploys...</div>
           ) : (
-            <Button type="submit" value="Submit" variant="contained"></Button>
+            <Button
+              type="submit"
+              value="Submit"
+              variant="contained"
+              color="primary"
+            >
+              DEPLOY
+            </Button>
           )}
-        </form>
+        </FormControl>
       </div>
     );
   }

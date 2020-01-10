@@ -10,12 +10,7 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   table: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "end",
-    backgroundColor: "grey",
-    position: "relative",
-    height: "100px"
+    backgroundColor: "grey"
   }
 });
 function createData(name) {

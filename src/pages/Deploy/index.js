@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DeployNewToken from "../../components/forms/DeployNewToken";
 import { MyWeb3Consumer } from "../../web3/EthersContext";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -57,11 +57,6 @@ const Admin = props => (
       return (
         <MuiThemeProvider>
           <form>
-            <TextField
-              hintText="Hint text"
-              floatingLabelText="Fixed Floating label text"
-              floatingLabelFixed={true}
-            />
             <div className="admin-page">
               <h1 className="title">Admin Page</h1>
 
@@ -78,4 +73,4 @@ const Admin = props => (
   </MyWeb3Consumer>
 );
 
-export default Admin;
+export default withStyles(useStyles)(Admin);

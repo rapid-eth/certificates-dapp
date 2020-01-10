@@ -30,9 +30,7 @@ function App() {
           </Router>
         </MuiThemeProvider>
       </MyWeb3Provider>
-      <MuiThemeProvider theme={theme}>
-        <Footer />
-      </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}></MuiThemeProvider>
     </div>
   );
 }

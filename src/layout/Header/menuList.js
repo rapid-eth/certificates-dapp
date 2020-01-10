@@ -6,7 +6,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import Link from "@material-ui/core/Link";
-
+import SearchIcon from "@material-ui/icons/Search";
 export const mainListItems = (
   <div>
     <ListItem button component="a" href="/">
@@ -23,7 +23,7 @@ export const mainListItems = (
     </ListItem>
     <ListItem button component="a" href="/token">
       <ListItemIcon>
-        <BarChartIcon />
+        <SearchIcon />
       </ListItemIcon>
       <ListItemText primary="Token Finder" href="/token" />
     </ListItem>
