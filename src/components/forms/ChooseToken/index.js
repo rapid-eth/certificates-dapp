@@ -64,7 +64,7 @@ export default class ChooseToken extends Component {
             }
         } else {
             if (isHexAddress(this.state.manualToken)) {
-                navigate(`/token/${this.state.manualToken}`);
+                navigate(`/${this.props.route}/${this.state.manualToken}`);
             }
             alert("Invalid Token address")
         }

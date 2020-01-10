@@ -29,7 +29,13 @@ class Token extends Component {
         let owner = await this.props.contract.owner()
         let supply = await this.props.contract.totalSupply()
         let balance = await this.props.contract.balanceOf(window.ethereum.selectedAddress)
-        let cap = await this.props.contract.cap()
+        
+        let cap;
+        try {
+          cap = await this.props.contract.cap()
+        } catch (error) {
+          cap = "no cap value set on contract"
+        }
 
   
         console.log(supply.toString())
