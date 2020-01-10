@@ -57,11 +57,13 @@ const Admin = props => (
       }
       return (
         <MuiThemeProvider>
-          <Card>
-            <h1 className="title">Admin Page</h1>
-            <h3>Create a new token with the fields below</h3>
-          </Card>
-          <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
+          <div className="formBody">
+            <div className="formText">
+              <h1>Admin Page</h1>
+              <h3>Create a new token with the fields below</h3>
+            </div>
+            <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
+          </div>
         </MuiThemeProvider>
       );
     }}

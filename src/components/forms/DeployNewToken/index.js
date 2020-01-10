@@ -20,8 +20,8 @@ const styles = theme => ({
     heigth: "auto",
     width: "100vw",
     display: "flex",
-    justifyContent: "center",
-    border: "5px solid red"
+    justifyContent: "center"
+    // border: "5px solid red"
   }
 });
 class CreateForm extends Component {
