@@ -82,7 +82,6 @@ class CreateForm extends Component {
             id={this.props.id}
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
           >
             <TextField
               id="standard-basic"
@@ -121,6 +120,7 @@ class CreateForm extends Component {
                 value="Submit"
                 variant="contained"
                 color="primary"
+                onClick={this.handleSubmit}
               >
                 DEPLOY
               </Button>
