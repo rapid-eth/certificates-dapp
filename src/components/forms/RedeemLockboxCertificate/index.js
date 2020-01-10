@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { bigNumberify, compareHex } from "../../../web3/web3Utils"
 import Dropzone from "../../Dropzone"
 class CreateForm extends Component {
     constructor(props) {
@@ -46,10 +47,19 @@ class CreateForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.submitTransaction()
+        const { certJsonTextArea } = this.state
+        const cert = JSON.parse(certJsonTextArea)
+        const {type} = cert
+        if (type.toLowerCase() === "lockbox") {
+            this.submitLockboxTransaction()
+        } else if (type.toLowerCase() === "erc20") {
+            this.submitTransaction()
+        } else {
+            alert("Invalid type value")
+        }
     }
 
-    submitTransaction = async () => {
+    submitERC20Transaction = async () => {
         const { certJsonTextArea } = this.state
         const cert = JSON.parse(certJsonTextArea)
         const { signature, certificateId } = cert
@@ -58,11 +68,21 @@ class CreateForm extends Component {
         document.getElementById(this.props.id).reset();
     };
 
+    submitLockboxTransaction = async () => {
+        const { certJsonTextArea } = this.state
+        const cert = JSON.parse(certJsonTextArea)
+        const { signature, tokenAddress, amount, recipient, signer, nonce } = cert
+        let bnAmount = bigNumberify(amount)
+        if (!compareHex(recipient, window.ethereum.selectedAddress)) {
+            alert("Recipient address does not match your address")
+        } else {
+            await this.props.lockboxContract.redeem(signer, tokenAddress, bnAmount, nonce, signature)
+            document.getElementById(this.props.id).reset();
+        }
+
+    };
 
     render() {
-        if (this.state.notOwner) {
-            return (<span className="form-warning">You are not the owner of the contract {this.props.contract.address}</span>)
-        }
         return (
             <form id={this.props.id} onSubmit={this.handleSubmit}>
                 <Dropzone

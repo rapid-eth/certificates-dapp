@@ -29,3 +29,9 @@ export const arrayify = ethers.utils.arrayify
 export const isHexAddress = (address) => {
     return /^0x[a-fA-F0-9]{40}$/.test(address)
 }
+
+export const bigNumberify = ethers.utils.bigNumberify
+
+export const compareHex = (a,b) => {
+    return (a.toLowerCase() === b.toLowerCase())
+}

@@ -58,7 +58,7 @@ export default class ChooseToken extends Component {
         event.preventDefault();
         if (!this.state.manualToken) {
             if (isHexAddress(this.state.selectorTokenChoice)) {
-                navigate(`/token/${this.state.selectorTokenChoice}`);
+                navigate(`/${this.props.route}/${this.state.selectorTokenChoice}`);
             } else {
                 alert("Please select a valid token from the list")
             }

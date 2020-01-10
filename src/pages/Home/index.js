@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router"
+// import { Link } from "@reach/router"
 
 
 class Home extends Component {

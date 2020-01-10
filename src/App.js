@@ -3,17 +3,15 @@ import Header from './layout/Header';
 import Footer from './layout/Footer';
 
 import './App.css';
-import { createHistory, LocationProvider, Router } from "@reach/router"
-import createHashSource from 'hash-source'
+import { Router } from "@reach/router"
 
 import Home from "./pages/Home"
 import TokenList from "./pages/TokenList"
 import Deploy from "./pages/Deploy"
 import TokenPage from "./pages/Token"
+import LockboxPage from "./pages/Lockbox"
 import { MyWeb3Provider } from "./web3/EthersContext"
 
-let source = createHashSource()
-let history = createHistory(source)
  
 function App() {
   return (
@@ -27,6 +25,8 @@ function App() {
           <Deploy path="/deploy" />
           <TokenPage path="/token" />
           <TokenPage path="/token/:tokenId" />
+          <LockboxPage path="/lockbox" />
+          <LockboxPage path="/lockbox/:tokenId" />
         </Router>
         <Footer />
       </MyWeb3Provider>

@@ -1,21 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import DeployNewToken from "../../components/forms/DeployNewToken"
 import { MyWeb3Consumer } from "../../web3/EthersContext"
 
-class Admin1 extends Component {
-
-    componentDidMount = async () => {
-        // console.log("create component", this.props.tokenContract.options)
-    }
-
-    render() {
-        return (
-            <div>
-                <DeployNewToken />
-            </div>
-        );
-    }
-}
 
 const Admin = (props) => (
     <MyWeb3Consumer>

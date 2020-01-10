@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 
 
 import getWeb3 from "./getWeb3";
@@ -16,11 +16,11 @@ export class MyWeb3Provider extends Component {
     this.state = {
       loaded: false,
       gameList: [],
-      refresh: ()=> {},
+      refresh: () => { },
       web3: null
     }
   }
-  
+
   setLoaded() {
     this.setState({
       loaded: true
@@ -45,7 +45,7 @@ export class MyWeb3Provider extends Component {
     try {
       // Get network provider and web3 instance
       let web3
-      if (!this.state.web3){
+      if (!this.state.web3) {
         web3 = await getWeb3();
       } else {
         web3 = this.state.web3
@@ -62,50 +62,16 @@ export class MyWeb3Provider extends Component {
       const networkId = network.chainId;
       const signer = provider.getSigner();
 
-
-
-    //   let x = await signer.signMessage("hello")
-    //   console.log(x)
-
-
       const contracts = getContracts(networkId)
       const exampleCoinJSON = contracts.exampleCoin
-
-      console.log(exampleCoinJSON)
+      const lockboxJSON = contracts.lockbox
 
       let exampleCoinFactory = new ethers.ContractFactory(exampleCoinJSON.abi, exampleCoinJSON.bytecode, signer);
-
       let exampleCoinContract = new ethers.Contract(exampleCoinJSON.address, exampleCoinJSON.abi, signer);
 
-    //   const deployedNetwork = TokenContract.networks[networkId];
-    //   const tokenContract = new web3.eth.Contract(
-    //     TokenContract.abi,
-    //     deployedNetwork && deployedNetwork.address,
-    //   );
+      let lockboxContract = new ethers.Contract(lockboxJSON.address, lockboxJSON.abi, signer);
 
-    //   const fbdeployedNetwork = FootballContract.networks[networkId];
-    //   const squaresContract = new web3.eth.Contract(
-    //     FootballContract.abi,
-    //     fbdeployedNetwork && fbdeployedNetwork.address,
-    //   );
-
-    //   const faucetdNetwork = FaucetContract.networks[networkId];
-    //   const faucetContract = new web3.eth.Contract(
-    //     FaucetContract.abi,
-    //     faucetdNetwork && faucetdNetwork.address,
-    //   );
-
-    //   squaresContract.events.GameCreated({
-    //     fromBlock: 0
-    //   }, (error, event) => {
-    //     let {gameId, owner, token, metadata} = event.returnValues
-    //     let g = {gameId, owner, token, metadata}        
-    //     this.setState({ gameList: [...this.state.gameList, g] }) //simple value
-    //   })
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, provider, signer, networkId, accounts, exampleCoinContract, exampleCoinFactory }, this.setLoaded);
+      this.setState({ web3, provider, signer, networkId, accounts, exampleCoinContract, exampleCoinFactory, lockboxContract }, this.setLoaded);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -115,8 +81,6 @@ export class MyWeb3Provider extends Component {
     }
 
   }
-
-
 
   render() {
     return (

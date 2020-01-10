@@ -73,7 +73,13 @@ class CreateForm extends Component {
             let cHash = await this.props.contract.getCertificateHash(this.state.selectedCertificateId, this.state.recipient)
             const certHashBytes = arrayify(cHash);
             let signature = await this.props.signer.signMessage(certHashBytes)
-            let signedCertificate = {signature, address: this.props.contract.address, recipient: this.state.recipient, certificateId: this.state.selectedCertificateId }
+            let signedCertificate = {
+                type: "ERC20",
+                signature, 
+                address: this.props.contract.address, 
+                recipient: this.state.recipient, 
+                certificateId: this.state.selectedCertificateId 
+            }
             console.log(signedCertificate)
             this.setState({signedCertificate, isCertSigned: true})
         } else {
@@ -132,7 +138,7 @@ class CreateForm extends Component {
 
 
     render() {
-        if (this.state.certificates.length == 0) {
+        if (this.state.certificates.length === 0) {
             return (<span className="form-warning">You are not a delegate for any certificates on contract {this.props.contract.address}</span>)
         }
         return (

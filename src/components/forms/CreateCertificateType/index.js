@@ -61,7 +61,7 @@ class CreateForm extends Component {
         try {
             delegateFields.forEach((df,i) => {
                 if (!isHexAddress(df)) {
-                    throw "Delegate Field " + i + " is not a valid address"
+                    throw new Error("Delegate Field " + i + " is not a valid address")
                 }
             })
             //delegateFields.push(window.ethereum.selectedAddress)
