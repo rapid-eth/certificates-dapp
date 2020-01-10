@@ -21,6 +21,7 @@ function App() {
       <MyWeb3Provider>
         <MuiThemeProvider theme={theme}>
           <Header />
+          <Body />
           <Router>
             <Home path="/" />
             <TokenList path="/list" />

@@ -15,8 +15,13 @@ const styles = theme => ({
   chooser: {
     minWidth: 400
   },
-  formBody: {
-    width: "100vw"
+
+  body: {
+    heigth: "auto",
+    width: "100vw",
+    display: "flex",
+    justifyContent: "center",
+    border: "5px solid red"
   }
 });
 class CreateForm extends Component {
@@ -70,56 +75,58 @@ class CreateForm extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.formBody}>
-        <FormControl
-          className={classes.root}
-          id={this.props.id}
-          noValidate
-          autoComplete="off"
-          onSubmit={this.handleSubmit}
-        >
-          <TextField
-            id="standard-basic"
-            label="Token Name:"
-            name="name"
-            type="text"
-            onChange={this.handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Token Symbol:"
-            name="symbol"
-            type="text"
-            onChange={this.handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label=" Decimal Units:"
-            name="decimalUnits"
-            type="number"
-            onChange={this.handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Mint Cap:"
-            name="cap"
-            type="number"
-            onChange={this.handleChange}
-          />
+      <div className={classes.body}>
+        <div className={classes.formBody}>
+          <FormControl
+            className={classes.root}
+            id={this.props.id}
+            noValidate
+            autoComplete="off"
+            onSubmit={this.handleSubmit}
+          >
+            <TextField
+              id="standard-basic"
+              label="Token Name:"
+              name="name"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <TextField
+              id="standard-basic"
+              label="Token Symbol:"
+              name="symbol"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <TextField
+              id="standard-basic"
+              label=" Decimal Units:"
+              name="decimalUnits"
+              type="number"
+              onChange={this.handleChange}
+            />
+            <TextField
+              id="standard-basic"
+              label="Mint Cap:"
+              name="cap"
+              type="number"
+              onChange={this.handleChange}
+            />
 
-          {this.state.waiting ? (
-            <div>Please Wait While Token Deploys...</div>
-          ) : (
-            <Button
-              type="submit"
-              value="Submit"
-              variant="contained"
-              color="primary"
-            >
-              DEPLOY
-            </Button>
-          )}
-        </FormControl>
+            {this.state.waiting ? (
+              <div>Please Wait While Token Deploys...</div>
+            ) : (
+              <Button
+                type="submit"
+                value="Submit"
+                variant="contained"
+                color="primary"
+              >
+                DEPLOY
+              </Button>
+            )}
+          </FormControl>
+        </div>
       </div>
     );
   }

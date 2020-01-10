@@ -14,7 +14,6 @@ import "./index.css";
 
 const useStyles = theme => ({
   card: {
-    border: "5px solid blue",
     display: "flex",
     justifyContent: "center"
   },
@@ -22,14 +21,15 @@ const useStyles = theme => ({
   title: {
     color: "black",
     textAlign: "center",
-    border: "2px solid blue",
     boxShadow: "5px 5px #888888"
   },
   pos: {
     marginBottom: 12
   },
-  border: {
-    border: "5px solid blue"
+  body: {
+    display: "flex",
+    justifyContent: "center",
+    maxWidth: "100%"
   }
 });
 class Admin1 extends Component {
@@ -56,17 +56,9 @@ const Admin = props => (
       }
       return (
         <MuiThemeProvider>
-          <form>
-            <div className="admin-page">
-              <h1 className="title">Admin Page</h1>
-
-              <h3>Create a new token with the fields below</h3>
-              <DeployNewToken
-                id="new-token-form"
-                factory={exampleCoinFactory}
-              />
-            </div>
-          </form>
+          <h1 className="title">Admin Page</h1>
+          <h3>Create a new token with the fields below</h3>
+          <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
         </MuiThemeProvider>
       );
     }}

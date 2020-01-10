@@ -16,9 +16,9 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = theme => ({
   card: {
-    border: "5px solid blue",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    border: "5px solid green"
   },
 
   title: {
@@ -153,7 +153,6 @@ const TokenConsumer = props => (
 
       return (
         <div className="token-page">
-          <h1>Token Page</h1>
           <TokenStyles
             tokenAddress={props.tokenId}
             templateAddress={exampleCoinContract.address}

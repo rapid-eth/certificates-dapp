@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   card: {
     display: "flex",
-    border: "1px solid blue",
     maxWidth: "100%",
     minHeight: "300px"
   },
@@ -22,7 +21,6 @@ const useStyles = makeStyles({
   body: {
     display: "flex",
     justifyContent: "center",
-    border: "1px solid green",
     maxWidth: "100%"
   }
 });
@@ -54,18 +52,3 @@ export default function Home() {
     </div>
   );
 }
-//     return (
-//       <div>
-//         <h1>Home Page</h1>
-//         <h2>Hello and welcome</h2>
-//         <p>
-//           This is the certificates Dapp, it does x, y and z. Its a pretty cool
-//           dapp, I'll explain how it works eventually but for now this filler
-//           text will have to suffice.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Home;

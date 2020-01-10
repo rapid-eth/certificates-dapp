@@ -10,7 +10,6 @@ const Dapp = props => (
       return (
         <div className="list-page">
           <h1>Token List Page</h1>
-          <div></div>
         </div>
       );
     }}

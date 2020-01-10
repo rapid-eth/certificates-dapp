@@ -11,12 +11,17 @@ import { Button } from "@material-ui/core";
 const styles = theme => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
-      width: 200
+      width: 400
     }
   },
   chooser: {
     minWidth: 400
+  },
+  body: {
+    heigth: "auto",
+    width: "100vw",
+    display: "flex",
+    justifyContent: "center"
   }
 });
 
@@ -125,8 +130,8 @@ class ChooseToken extends Component {
 
     console.log(this.state);
     return (
-      <div>
-        <h2>Token Finder</h2>
+      <div className={this.props.classes.body}>
+        {/* <h2>Token Finder</h2> */}
         <form onSubmit={this.handleSubmit}>
           {this.getSelector()}
           <br></br>
@@ -143,7 +148,12 @@ class ChooseToken extends Component {
             />
           </form>
           <br></br>
-          <Button type="submit" variant="contained" value="Go to Token">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            value="Go to Token"
+          >
             Go to Token
           </Button>{" "}
         </form>
