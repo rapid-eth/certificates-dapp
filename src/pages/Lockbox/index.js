@@ -68,7 +68,7 @@ render() {
         <CreateLockboxCertificate id="create-cert-form" tokenContract={this.state.contract} lockboxContract={this.props.lockboxContract} provider={this.props.provider} signer={this.props.signer} />
       </div>
       <div className="lockbox-box-div">
-        <h3>Redeem Certificate</h3>
+        <h3>Redeem Lockbox Certificate</h3>
         <RedeemLockboxCertificate id="redeem-cert-form" contract={this.state.contract} lockboxContract={this.props.lockboxContract} provider={this.props.provider} signer={this.props.signer} />
       </div>
     </div>
@@ -87,7 +87,7 @@ const TokenConsumer = (props) => (
       }
       return (
         <div className="token-page">
-          <h1>Token Page</h1>
+          <h1>Lockbox Page</h1>
           <Lockbox tokenAddress={props.tokenId} templateAddress={exampleCoinContract.address} networkId={networkId} signer={signer} provider={provider} lockboxContract={lockboxContract}/>
         </div>
       )
