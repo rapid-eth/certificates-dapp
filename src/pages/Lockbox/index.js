@@ -39,22 +39,13 @@ class Lockbox extends Component {
   async loadContract() {
     try {
       console.log("loading contract")
-      let provider = this.props.provider
-
-      let templateCode = await provider.getCode(this.props.templateAddress)
-      let code = await provider.getCode(this.props.tokenAddress)
 
       let contracts = getContracts(this.props.networkId)
       const exampleCoinJSON = contracts.exampleCoin
 
-      if (templateCode !== code) {
-        let loadingMessage = "deployed contract code does not match example coin contract"
-        throw loadingMessage;
-      }
       let contract = new ethers.Contract(this.props.tokenAddress, exampleCoinJSON.abi, this.props.signer);
-      let owner = await contract.owner()
 
-      this.setState({ contract, owner }, this.setLoaded)
+      this.setState({ contract }, this.setLoaded)
     } catch (err) {
       console.log(err)
       this.setState({ loadingMessage: err.toString() })
