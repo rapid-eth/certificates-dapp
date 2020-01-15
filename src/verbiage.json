@@ -1,0 +1,8 @@
+{
+    "tokenMetadata": "This is the token metadata, it displays information specific to the token in context which is read dynamically from the blockchain.",
+    "tokenCertificateType": "Use this form to create a certificate type. A certificate type is simply comprised of an amount that the certificate is worth, some metadata describing the certificate, and any number of delegate addresses who will be able to sign redeemable certificates. If you are not the contract \"owner\", you will not be able to create certificate types.",
+    "tokenCertificateCreate": "Use this form to create a certificate. In order to create a valid, signed ERC20 certificate, you must be a delegate of the certificate type you are signing.",
+    "tokenRedeem": "Use this form to redeem a signed certificate, you can copy and paste the certificate json data into the form or you can upload a json file",
+    "lockboxCertificate": "Use this form to create a lockbox certificate. You will first have to approve the appropriate amount of the ERC20 token you plan on lockboxing, then you will sign a certificate for a recipient address which will allow them to redeem the certificate to the lockbox",
+    "lockboxRedeem": "Use this form to redeem a lockbox certificate, you can copy and paste the certificate json data into the form or you can upload a json file"
+}

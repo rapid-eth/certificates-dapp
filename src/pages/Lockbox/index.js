@@ -45,6 +45,15 @@ class Lockbox extends Component {
 
       let contract = new ethers.Contract(this.props.tokenAddress, exampleCoinJSON.abi, this.props.signer);
 
+      try {
+        let deployed = await contract.getDeployed()
+      } catch (error) {
+        console.log('caught')
+        throw new Error("contract not valid")
+      }
+
+      console.log("loading contrac win")
+
       this.setState({ contract }, this.setLoaded)
     } catch (err) {
       console.log(err)
@@ -60,7 +69,6 @@ render() {
   return (
     <div>
       <div className="lockbox-box-div">
-        <h3>Token Data</h3>
         <TokenMeta contract={this.state.contract} />
       </div>
       <div className="lockbox-box-div">
@@ -83,7 +91,7 @@ const TokenConsumer = (props) => (
         return (<div>Loading form</div>)
       }
       if (!props.tokenId) {
-        return <ChooseToken  exampleCoin={exampleCoinContract} provider={provider} route="lockbox"/>
+        return <ChooseToken  title="Lockbox Token Finder" goButtonText="Go to Lockbox" exampleCoin={exampleCoinContract} provider={provider} route="lockbox"/>
       }
       return (
         <div className="token-page">

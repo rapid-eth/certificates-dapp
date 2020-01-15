@@ -5,7 +5,7 @@ import getContracts from "../../web3/getContracts";
 import TokenMeta from "../../components/TokenMeta"
 import CreateCertificateType from "../../components/forms/CreateCertificateType"
 import CreateCertificate from "../../components/forms/CreateCertificate"
-import RedeemCertificate from "../../components/forms/RedeemCertificate"
+import RedeemLockboxCertificate from "../../components/forms/RedeemLockboxCertificate"
 import ChooseToken from "../../components/forms/ChooseToken"
 
 import "./index.css"
@@ -66,21 +66,14 @@ class Token extends Component {
     }
     return (
       <div>
-        <div className="token-box-div">
-          <h3>Token Data</h3>
           <TokenMeta contract={this.state.contract} />
-        </div>
-        <div className="token-box-div">
-          <h3>Create Certificate Type (admin only)</h3>
+          <div className="token-row">
           <CreateCertificateType id="create-cert-type-form" contract={this.state.contract} />
-        </div>
-        <div className="token-box-div">
-          <h3>Create Certificate (delegate only)</h3>
           <CreateCertificate id="create-cert-form" contract={this.state.contract} provider={this.props.provider} signer={this.props.signer} />
         </div>
+
         <div className="token-box-div">
-          <h3>Redeem Certificate</h3>
-          <RedeemCertificate id="redeem-cert-form" contract={this.state.contract} provider={this.props.provider} signer={this.props.signer} />
+          <RedeemLockboxCertificate id="redeem-cert-form" contract={this.state.contract} provider={this.props.provider} signer={this.props.signer} />
         </div>
       </div>
     );
@@ -96,11 +89,10 @@ const TokenConsumer = (props) => (
         return (<div>Loading form</div>)
       }
       if (!props.tokenId) {
-        return <ChooseToken  exampleCoin={exampleCoinContract} provider={provider} route="token" />
+        return <ChooseToken title="Token Finder" goButtonText="Go to Token" exampleCoin={exampleCoinContract} provider={provider} route="token" />
       }
       return (
         <div className="token-page">
-          <h1>Token Page</h1>
           <Token tokenAddress={props.tokenId} templateAddress={exampleCoinContract.address} networkId={networkId} signer={signer} provider={provider} />
         </div>
       )

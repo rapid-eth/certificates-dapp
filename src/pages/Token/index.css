@@ -1,9 +1,35 @@
-.token-box-div {
+/* .token-box-div {
     border-style: dashed;
     border-color: brown;
     margin: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    border-radius: 15px 50px;
+} */
 
+.token-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.tp-title {
+    align-self: center;
+}
+.token-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.token-form {
+    background-color: rgb(140, 169, 250);
+    padding: 40px;
+    border-radius: 15px 50px;
+    box-shadow: 3px 5px 8px  #0d44ac;
+    margin: 15px;
+    flex-grow: 1;
+    min-width: 45%;
+}
+
+.token-form:hover {
+    box-shadow: 3px 5px 8px  #000000;
 }

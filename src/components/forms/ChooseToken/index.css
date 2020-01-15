@@ -1,0 +1,44 @@
+.token-finder {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.finder-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.selector-class {
+    position: relative;
+    width: 50%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+#or-span {
+    margin: 20px 20px;
+    font-size: 30px;
+}
+
+.finder-submit-button {
+    margin: 20px;
+}
+
+.address-input {
+    padding: 3px;
+    margin: 10px;
+    border: none;
+    width: 50%;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+
+    /* border-bottom: 2px solid red; */
+}
+
+
+.address-input:focus {
+    background-color: beige;
+  /* border-bottom: 2px solid red; */
+}

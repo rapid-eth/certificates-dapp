@@ -1,80 +1,109 @@
 import React, { Component } from "react";
-
+import "./index.css"
 class Token extends Component {
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        contractLoaded: false,
-        loadingMessage: "Loading Contract...",
-        owner: null
-      };
-  
-    }
-    setLoaded() {
-      this.setState({
-        contractLoaded: true
-      })
-    }
-  
-    componentDidMount = async () => {
-      this.loadContract()
-    }
-  
-    async loadContract() {
-      try {
+  constructor(props) {
+    super(props);
+    this.state = {
+      contractLoaded: false,
+      loadingMessage: "Loading Contract...",
+      owner: null
+    };
 
-        let symbol = await this.props.contract.symbol()
-        let name = await this.props.contract.name()
-        let owner = await this.props.contract.owner()
-        let supply = await this.props.contract.totalSupply()
-        let balance = await this.props.contract.balanceOf(window.ethereum.selectedAddress)
-        
-        let cap;
-        try {
-          cap = await this.props.contract.cap()
-        } catch (error) {
-          cap = "no cap value set on contract"
-        }
+  }
+  setLoaded() {
+    this.setState({
+      contractLoaded: true
+    })
+  }
 
-  
-        console.log(supply.toString())
-        this.setState({ symbol, name, owner, supply: supply.toString(), balance: balance.toString(), cap: cap.toString() }, this.setLoaded)
-  
-      } catch (err) {
-        console.log(err)
-        this.setState({ loadingMessage: err.toString() })
-  
-      }
+  componentDidMount = async () => {
+    this.loadContract()
+  }
+
+  async getContractValue(fname) {
+    let v
+    try {
+      let s = await this.props.contract[fname]()
+      v = s.toString()
+    } catch (error) {
+      v = false
     }
-  
-    render() {
-      if (!this.state.contractLoaded) {
-        return (<div>{this.state.loadingMessage}</div>)
-      }
-      return (
-        <div>
-          <label>Name:</label>
-          <span>{this.state.name}</span>
-          <br></br>
-          <label>Symbol:</label>
-          <span>{this.state.symbol}</span>
-          <br></br>
-          <label>Owner:</label>
-          <span>{this.state.owner}</span>
-          <br></br>
-          <label>Balance:</label>
-          <span>{this.state.balance}</span>
-          <br></br>
-          <label>Total Supply:</label>
-          <span>{this.state.supply}</span>
-          <br></br>
-          <label>Cap:</label>
-          <span>{this.state.cap}</span>
-          <br></br>
-        </div>
-      );
+    return v
+  }
+
+
+  async loadContract() {
+    try {
+
+      let symbol = await this.props.contract.symbol()
+      let name = await this.props.contract.name()
+      let owner = await this.getContractValue("owner")
+
+      let b = await this.props.contract.balanceOf(window.ethereum.selectedAddress)
+      let balance = b.toString()
+      let decimals = await this.getContractValue("decimals")
+      let supply = await this.getContractValue("totalSupply")
+
+      let cap = await this.getContractValue("cap")
+      console.log("cap", cap)
+
+
+
+      console.log(supply.toString())
+      this.setState({ symbol, name, owner, supply, decimals, balance, cap }, this.setLoaded)
+
+    } catch (err) {
+      console.log(err)
+      this.setState({ loadingMessage: err.toString() })
+
     }
   }
 
-  export default Token;
+  render() {
+    if (!this.state.contractLoaded) {
+      return (<div>{this.state.loadingMessage}</div>)
+    }
+    return (
+      <div className="token-data-div">
+        <span className="token-data-title">Token Data</span>
+        <div className="token-inner-data-div" >
+
+          <label className="token-data-label">Name:</label>
+          <span className="token-data-span" >&nbsp;&nbsp;{this.state.name}</span>
+          <br></br>
+          <label className="token-data-label">Symbol:</label>
+          <span className="token-data-span">&nbsp;&nbsp;{this.state.symbol}</span>
+          <br></br>
+          <OptionalLabel label="Owner" value={this.state.owner} />
+          <br></br>
+          <OptionalLabel label="Decimals" value={this.state.decimals} />
+          <br></br>
+          <label className="token-data-label">Balance:</label>
+          <span className="token-data-span">&nbsp;&nbsp;{this.state.balance}</span>
+          <br></br>
+          <OptionalLabel label="Total Supply" value={this.state.supply} />
+          <br></br>
+          <OptionalLabel label="Cap" value={this.state.cap} />
+        </div>
+      </div>
+    );
+  }
+}
+
+
+const OptionalLabel = ({ label, value }) => {
+  if (!value) {
+    return (<></>)
+  }
+  return (
+    <>
+      <label className="token-data-label">{label}:</label>
+      <span className="token-data-span">&nbsp;&nbsp;{value}</span>
+    </>
+  )
+};
+
+
+
+export default Token;

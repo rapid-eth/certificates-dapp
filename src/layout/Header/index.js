@@ -10,10 +10,10 @@ function Header() {
     <div>
       <header>
         <div className="header-div">
-          <Link className="nav-item nav-link" to="/"><button className="btn-primary">Home</button></Link>
-          <Link className="nav-item nav-link" to="/deploy"><button className="btn-secondary">Deploy</button></Link>
-          <Link className="nav-item nav-link" to="/token"><button className="btn-secondary">Token</button></Link>
-          <Link className="nav-item nav-link" to="/lockbox"><button className="btn-secondary">Lockbox</button></Link>
+          <Link className="nav-item nav-link" to="/"><img className="header-img" src="/ethcert.png"></img></Link>
+          <Link className="nav-item nav-link" to="/deploy"><button className="btn-secondary button-class">Deploy</button></Link>
+          <Link className="nav-item nav-link" to="/token"><button className="btn-secondary button-class">Token</button></Link>
+          <Link className="nav-item nav-link" to="/lockbox"><button className="btn-secondary button-class">Lockbox</button></Link>
         </div>
       </header>
     </div>

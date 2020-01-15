@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { isHexAddress } from "../../../web3/web3Utils";
+import TokenFormWrap from "../TokenFormWrap"
 
 import "./index.css"
 class CreateForm extends Component {
@@ -59,7 +60,7 @@ class CreateForm extends Component {
     submitTransaction = async () => {
         const { amount, delegateFields, metadata } = this.state
         try {
-            delegateFields.forEach((df,i) => {
+            delegateFields.forEach((df, i) => {
                 if (!isHexAddress(df)) {
                     throw new Error("Delegate Field " + i + " is not a valid address")
                 }
@@ -76,34 +77,42 @@ class CreateForm extends Component {
 
     render() {
         if (this.state.notOwner) {
-            return (<span className="form-warning">You are not the owner of the contract {this.props.contract.address}</span>)
+            return (
+                <TokenFormWrap  title="Create Certificate Type">
+                    <span className="form-warning">
+                        You are not the owner of the contract {this.props.contract.address}
+                    </span>
+                </TokenFormWrap>
+            )
         }
         return (
-            <form id={this.props.id} onSubmit={this.handleSubmit}>
-                <br></br>
-                <label>
-                    Amount:
+            <TokenFormWrap title="Create Certificate Type">
+                <form id={this.props.id} onSubmit={this.handleSubmit}>
+                    <br></br>
+                    <label>
+                        Amount:
             <input name="amount" type="number" onChange={this.handleChange} />
-                </label>
-                <br></br>
+                    </label>
+                    <br></br>
 
-                <label>
-                    Metadata:
+                    <label>
+                        Metadata:
             <input name="metadata" type="text" onChange={this.handleChange} />
-                </label>
-                <br></br>
-                <label>
-                    Delegates:
+                    </label>
+                    <br></br>
+                    <label>
+                        Delegates:
                  {this.state.delegateFields.map((d, fId) => {
-                     return (<div key={fId}><input id={fId} name="delegates" type="text" onChange={this.handleChange} /><br></br></div>)
-                 })}
-                </label>
-                <div className="add-delegate-div" onClick={this.addNewDelegateField}>
-                    <span>+</span>
-                </div>
-                <br></br>
-                <input type="submit" value="Submit" disabled={this.state.notOwner} />
-            </form>
+                            return (<div key={fId}><input id={fId} name="delegates" type="text" onChange={this.handleChange} /><br></br></div>)
+                        })}
+                    </label>
+                    <div className="add-delegate-div" onClick={this.addNewDelegateField}>
+                        <span>+</span>
+                    </div>
+                    <br></br>
+                    <input type="submit" value="Submit" disabled={this.state.notOwner} />
+                </form>
+            </TokenFormWrap>
         );
     }
 }

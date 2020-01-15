@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { bigNumberify, compareHex } from "../../../web3/web3Utils"
 import Dropzone from "../../Dropzone"
+import TokenFormWrap from "../TokenFormWrap"
+
 class CreateForm extends Component {
     constructor(props) {
         super(props);
@@ -49,11 +51,11 @@ class CreateForm extends Component {
         event.preventDefault();
         const { certJsonTextArea } = this.state
         const cert = JSON.parse(certJsonTextArea)
-        const {type} = cert
+        const { type } = cert
         if (type.toLowerCase() === "lockbox") {
             this.submitLockboxTransaction()
         } else if (type.toLowerCase() === "erc20") {
-            this.submitTransaction()
+            this.submitERC20Transaction()
         } else {
             alert("Invalid type value")
         }
@@ -62,10 +64,13 @@ class CreateForm extends Component {
     submitERC20Transaction = async () => {
         const { certJsonTextArea } = this.state
         const cert = JSON.parse(certJsonTextArea)
-        const { signature, certificateId } = cert
-
-        await this.props.contract.redeemCertificate(signature, certificateId)
-        document.getElementById(this.props.id).reset();
+        const { signature, certificateId, recipient} = cert
+        if (!compareHex(recipient, window.ethereum.selectedAddress)) {
+            alert("Recipient address does not match your address")
+        } else {
+            await this.props.contract.redeemCertificate(signature, certificateId)
+            document.getElementById(this.props.id).reset();
+        }
     };
 
     submitLockboxTransaction = async () => {
@@ -82,22 +87,25 @@ class CreateForm extends Component {
 
     };
 
+
     render() {
         return (
-            <form id={this.props.id} onSubmit={this.handleSubmit}>
-                <Dropzone
-                    onFilesAdded={this.handleFileDrop}
-                    disabled={this.state.successfullyUploaded}
-                />
-                <label>
-                    Certificate JSON:
+            <TokenFormWrap title="Redeem Certificate">
+                <form id={this.props.id} onSubmit={this.handleSubmit}>
+                    <Dropzone
+                        onFilesAdded={this.handleFileDrop}
+                        disabled={this.state.successfullyUploaded}
+                    />
+                    <label>
+                        Certificate JSON:
                 </label>
-                <br></br>
-                <textarea name="certJsonTextArea" value={this.state.certJsonTextArea} rows="10" cols="100" onChange={this.handleChange} />
+                    <br></br>
+                    <textarea name="certJsonTextArea" value={this.state.certJsonTextArea} rows="10" cols="100" onChange={this.handleChange} />
 
-                <br></br>
-                <input type="submit" value="Redeem Certificate" />
-            </form>
+                    <br></br>
+                    <input type="submit" value="Redeem Certificate" />
+                </form>
+            </TokenFormWrap>
         );
     }
 }

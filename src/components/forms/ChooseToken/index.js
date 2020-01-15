@@ -4,7 +4,7 @@ import { navigate } from "@reach/router"
 
 import { getLocalStorageArray } from "../../../utils/localStorage"
 import { isHexAddress } from "../../../web3/web3Utils";
-
+import "./index.css"
 
 export default class ChooseToken extends Component {
 
@@ -74,7 +74,7 @@ export default class ChooseToken extends Component {
     getSelector() {
         const { selectorTokens } = this.state
         return (
-            <select name="selectorTokenChoice" onChange={this.handleChange}>
+            <select className="selector-class" name="selectorTokenChoice" onChange={this.handleChange}>
                 <option key={"-1"} value={""}>Please select a token...</option>
 
                 {selectorTokens.map((token, idx) => {
@@ -92,20 +92,18 @@ export default class ChooseToken extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Token Finder</h2>
-                <form onSubmit={this.handleSubmit}>
+            <div className="token-finder">
+                <h2>{this.props.title}</h2>
+                <form className="finder-form" onSubmit={this.handleSubmit}>
                     {this.getSelector()}
-                    <br></br>
-                    <span>OR</span>
-                    <br></br>
+                    <span id="or-span">OR</span>
                     <label>
-                        Add your own:
-                <input name="manualToken" value={this.state.manualToken} type="text" onChange={this.handleChange} />
-                    </label>
-                    <br></br>
+                        Add your own: 
+                        </label>
 
-                    <input type="submit" value="Go to Token" />
+                <input name="manualToken" className="address-input" value={this.state.manualToken} type="text" placeholder="0x123..." onChange={this.handleChange} />
+
+                    <input className="finder-submit-button" type="submit" value={this.props.goButtonText} />
 
                 </form>
 

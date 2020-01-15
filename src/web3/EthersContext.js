@@ -38,7 +38,8 @@ export class MyWeb3Provider extends Component {
   }
 
   async componentDidUpdate() {
-
+    console.log("asshole")
+    //this.gatherData()
   }
 
   async gatherData() {

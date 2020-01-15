@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { decodeLogs, arrayify } from "../../../web3/web3Utils";
+import TokenFormWrap from "../TokenFormWrap"
 
 import "./index.css"
 class CreateForm extends Component {
@@ -75,13 +76,13 @@ class CreateForm extends Component {
             let signature = await this.props.signer.signMessage(certHashBytes)
             let signedCertificate = {
                 type: "ERC20",
-                signature, 
-                address: this.props.contract.address, 
-                recipient: this.state.recipient, 
-                certificateId: this.state.selectedCertificateId 
+                signature,
+                address: this.props.contract.address,
+                recipient: this.state.recipient,
+                certificateId: this.state.selectedCertificateId
             }
             console.log(signedCertificate)
-            this.setState({signedCertificate, isCertSigned: true})
+            this.setState({ signedCertificate, isCertSigned: true })
         } else {
             alert("No valid cert selected")
         }
@@ -93,10 +94,10 @@ class CreateForm extends Component {
             alert("cert not valid")
             return
         }
-        const blob = new Blob([ JSON.stringify(this.state.signedCertificate) ], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify(this.state.signedCertificate)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
 
-        console.log("blob url",url)
+        console.log("blob url", url)
         const a = document.createElement('a');
         a.href = url;
         a.download = this.state.signedCertificate.certificateId || 'download';
@@ -139,10 +140,16 @@ class CreateForm extends Component {
 
     render() {
         if (this.state.certificates.length === 0) {
-            return (<span className="form-warning">You are not a delegate for any certificates on contract {this.props.contract.address}</span>)
+            return (
+                <TokenFormWrap title="Create Certificate">
+                    <span className="form-warning">
+                        You are not a delegate for any certificates on contract {this.props.contract.address}
+                    </span>
+                </TokenFormWrap>
+            )
         }
         return (
-            <div>
+            <TokenFormWrap  title="Create Certificate">
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
                     <label>
                         Certificate:
@@ -159,9 +166,9 @@ class CreateForm extends Component {
                     <input type="submit" value="Create Certificate" />
                 </form>
                 {
-                    this.state.isCertSigned ? <div><pre><code>{JSON.stringify(this.state.signedCertificate, 0, 2)}</code></pre><button onClick={this.downloadCert}>Download Certificate</button> </div>: null
+                    this.state.isCertSigned ? <div><pre><code>{JSON.stringify(this.state.signedCertificate, 0, 2)}</code></pre><button onClick={this.downloadCert}>Download Certificate</button> </div> : null
                 }
-            </div>
+            </TokenFormWrap>
         );
     }
 }
