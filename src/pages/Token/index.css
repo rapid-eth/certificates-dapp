@@ -21,13 +21,14 @@
 
 
 .token-form {
-    background-color: rgb(140, 169, 250);
+    background-color: var(--color-3);
     padding: 40px;
     border-radius: 15px 50px;
-    box-shadow: 3px 5px 8px  #0d44ac;
+    box-shadow: 3px 5px 8px  var(--color-1);
     margin: 15px;
     flex-grow: 1;
     min-width: 45%;
+    color: var(--color-1)
 }
 
 .token-form:hover {

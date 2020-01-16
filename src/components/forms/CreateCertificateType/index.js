@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { isHexAddress } from "../../../web3/web3Utils";
 import TokenFormWrap from "../TokenFormWrap"
+import verbiage from "../../../verbiage.json"
 
 import "./index.css"
 class CreateForm extends Component {
@@ -78,7 +79,7 @@ class CreateForm extends Component {
     render() {
         if (this.state.notOwner) {
             return (
-                <TokenFormWrap  title="Create Certificate Type">
+                <TokenFormWrap  title="Create Certificate Type" helperText={verbiage.tokenCertificateType}>
                     <span className="form-warning">
                         You are not the owner of the contract {this.props.contract.address}
                     </span>
@@ -86,7 +87,7 @@ class CreateForm extends Component {
             )
         }
         return (
-            <TokenFormWrap title="Create Certificate Type">
+            <TokenFormWrap title="Create Certificate Type"  helperText={verbiage.tokenCertificateType}>
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
                     <br></br>
                     <label>

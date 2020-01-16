@@ -3,7 +3,7 @@ import InfoButton from "../../InfoButton"
 const TokenFormWrap = (props) => {
     return (
         <div className="token-form">
-            <InfoButton info="s"/> 
+            <InfoButton info={props.helperText}/> 
             <h3>{props.title}</h3>
             {props.children}
         </div>

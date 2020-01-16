@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./index.css"
+import InfoButton from "../InfoButton";
+import verbiage from "../../verbiage.json"
+
 class Token extends Component {
 
   constructor(props) {
@@ -66,6 +69,7 @@ class Token extends Component {
     }
     return (
       <div className="token-data-div">
+        <InfoButton info={verbiage.tokenMetadata} />
         <span className="token-data-title">Token Data</span>
         <div className="token-inner-data-div" >
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bigNumberify, compareHex } from "../../../web3/web3Utils"
 import Dropzone from "../../Dropzone"
 import TokenFormWrap from "../TokenFormWrap"
-
+import verbiage from "../../../verbiage.json"
 class CreateForm extends Component {
     constructor(props) {
         super(props);
@@ -90,7 +90,7 @@ class CreateForm extends Component {
 
     render() {
         return (
-            <TokenFormWrap title="Redeem Certificate">
+            <TokenFormWrap title="Redeem Certificate" helperText={verbiage.tokenRedeem}>
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
                     <Dropzone
                         onFilesAdded={this.handleFileDrop}

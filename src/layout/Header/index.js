@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { Component } from "react";
 import { Link } from "@reach/router"
 import "./index.css"
-//import Balance from "../../components/Balance"
 
 
-function Header() {
-  return (
+class Header extends Component {
 
-    <div>
-      <header>
-        <div className="header-div">
-          <Link className="nav-item nav-link" to="/"><img className="header-img" src="/ethcert.png"></img></Link>
-          <Link className="nav-item nav-link" to="/deploy"><button className="btn-secondary button-class">Deploy</button></Link>
-          <Link className="nav-item nav-link" to="/token"><button className="btn-secondary button-class">Token</button></Link>
-          <Link className="nav-item nav-link" to="/lockbox"><button className="btn-secondary button-class">Lockbox</button></Link>
-        </div>
-      </header>
-    </div>
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  );
+    };
+
+  }
+
+  render() {
+    return (
+      <div>
+        <header>
+          <Link to="/"><img className="header-img" src="/ethcert.png"></img></Link>
+          <div className="header-buttons">
+            <Link className="header-link-item" to="/deploy">Deploy</Link>
+            <Link className="header-link-item" to="/token">Token</Link>
+            <Link className="header-link-item" to="/lockbox">Lockbox</Link>
+          </div>
+        </header>
+      </div>
+
+    );
+  }
 }
+
+// function ModLink(props) {
+//   return (
+//   <Link className="header-link-item" to={props.to}>{props.text}</Link>
+//   );
+// }
 
 export default Header;

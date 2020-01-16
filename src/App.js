@@ -15,6 +15,7 @@ import { MyWeb3Provider } from "./web3/EthersContext"
 
 function App() {
   return (
+    <>
     <div className="app-class">
 
       <MyWeb3Provider>
@@ -31,8 +32,11 @@ function App() {
           </Router>
         </div>
       </MyWeb3Provider>
+      <Footer />
+
     </div>
 
+</>
   );
 }
 

@@ -46,10 +46,10 @@ class Token extends Component {
       let contracts = getContracts(this.props.networkId)
       const exampleCoinJSON = contracts.exampleCoin
 
-      if (templateCode !== code) {
-        let loadingMessage = "deployed contract code does not match example coin contract"
-        throw loadingMessage;
-      }
+      // if (templateCode !== code) {
+      //   let loadingMessage = "deployed contract code does not match example coin contract"
+      //   throw loadingMessage;
+      // }
       let contract = new ethers.Contract(this.props.tokenAddress, exampleCoinJSON.abi, this.props.signer);
       let owner = await contract.owner()
 

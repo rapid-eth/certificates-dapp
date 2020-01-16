@@ -4,9 +4,7 @@ import "./index.css"
 function Footer() {
   return (
       <footer>
-        <div className="footer-div">
-          <p className="copyright">	&copy; Rapid 2020</p>
-        </div>
+          <p className="copyright"><a href="https://rapidteam.io">	&copy; Rapid 2020</a></p>
       </footer>
   );
 }

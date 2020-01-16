@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { decodeLogs, arrayify } from "../../../web3/web3Utils";
 import TokenFormWrap from "../TokenFormWrap"
+import verbiage from "../../../verbiage.json"
 
 import "./index.css"
 class CreateForm extends Component {
@@ -20,7 +21,6 @@ class CreateForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.downloadCert = this.downloadCert.bind(this);
-
     }
 
     async componentDidMount() {
@@ -141,7 +141,7 @@ class CreateForm extends Component {
     render() {
         if (this.state.certificates.length === 0) {
             return (
-                <TokenFormWrap title="Create Certificate">
+                <TokenFormWrap title="Create Certificate" helperText={verbiage.tokenCertificateCreate}>
                     <span className="form-warning">
                         You are not a delegate for any certificates on contract {this.props.contract.address}
                     </span>
@@ -149,7 +149,7 @@ class CreateForm extends Component {
             )
         }
         return (
-            <TokenFormWrap  title="Create Certificate">
+            <TokenFormWrap  title="Create Certificate" helperText={verbiage.tokenCertificateCreate}>
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
                     <label>
                         Certificate:
