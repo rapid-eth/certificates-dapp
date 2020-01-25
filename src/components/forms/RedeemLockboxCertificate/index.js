@@ -3,6 +3,8 @@ import { bigNumberify, compareHex } from "../../../web3/web3Utils"
 import Dropzone from "../../Dropzone"
 import TokenFormWrap from "../TokenFormWrap"
 import verbiage from "../../../verbiage.json"
+import "./index.css"
+
 class CreateForm extends Component {
     constructor(props) {
         super(props);
@@ -64,7 +66,7 @@ class CreateForm extends Component {
     submitERC20Transaction = async () => {
         const { certJsonTextArea } = this.state
         const cert = JSON.parse(certJsonTextArea)
-        const { signature, certificateId, recipient} = cert
+        const { signature, certificateId, recipient } = cert
         if (!compareHex(recipient, window.ethereum.selectedAddress)) {
             alert("Recipient address does not match your address")
         } else {
@@ -96,11 +98,11 @@ class CreateForm extends Component {
                         onFilesAdded={this.handleFileDrop}
                         disabled={this.state.successfullyUploaded}
                     />
-                    <label>
-                        Certificate JSON:
-                </label>
                     <br></br>
-                    <textarea name="certJsonTextArea" value={this.state.certJsonTextArea} rows="10" cols="100" onChange={this.handleChange} />
+
+                    <label>Certificate JSON:</label>
+                    <br></br>
+                    <textarea name="" value={this.state.certJsonTextArea} rows="10" cols="100" onChange={this.handleChange} />
 
                     <br></br>
                     <input type="submit" value="Redeem Certificate" />

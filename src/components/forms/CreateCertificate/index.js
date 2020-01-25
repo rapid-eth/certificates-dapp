@@ -113,7 +113,7 @@ class CreateForm extends Component {
         }
 
         return (
-            <select name="selectedCertificateId" onChange={this.handleChange}>
+            <select className="create-selector" name="selectedCertificateId" onChange={this.handleChange}>
                 <option key={"-1"} value={""}>Please select a certificate...</option>
 
                 {selectorList.map((cert, idx) => {
@@ -145,25 +145,30 @@ class CreateForm extends Component {
             )
         }
         return (
-            <TokenFormWrap  title="Create Certificate" helperText={verbiage.tokenCertificateCreate}>
+            <TokenFormWrap title="Create Certificate" helperText={verbiage.tokenCertificateCreate}>
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
-                    <label>
-                        Certificate:
+                    <label>Certificate:</label>
+                    <br></br>
                     {this.getDelegateSelector()}
-                    </label>
+                    <br></br>
                     <br></br>
 
-                    <label>
-                        Recipient:
-                <input name="recipient" type="text" onChange={this.handleChange} />
-                    </label>
+
+                    <label>Recipient:</label>
+                    
+                    <br></br>
+                    <input name="recipient" type="text" onChange={this.handleChange} />
+
+                    <br></br>
                     <br></br>
 
                     <input type="submit" value="Create Certificate" />
                 </form>
+                <div className="cert-json">
                 {
                     this.state.isCertSigned ? <div><pre><code>{JSON.stringify(this.state.signedCertificate, 0, 2)}</code></pre><button onClick={this.downloadCert}>Download Certificate</button> </div> : null
                 }
+                </div>
             </TokenFormWrap>
         );
     }

@@ -78,7 +78,7 @@ class CreateForm extends Component {
     render() {
         if (this.state.notOwner) {
             return (
-                <TokenFormWrap  title="Create Certificate Type" helperText={verbiage.tokenCertificateType}>
+                <TokenFormWrap title="Create Certificate Type" helperText={verbiage.tokenCertificateType}>
                     <span className="form-warning">
                         You are not the owner of the contract {this.props.contract.address}
                     </span>
@@ -86,29 +86,34 @@ class CreateForm extends Component {
             )
         }
         return (
-            <TokenFormWrap title="Create Certificate Type"  helperText={verbiage.tokenCertificateType}>
+            <TokenFormWrap title="Create Certificate Type" helperText={verbiage.tokenCertificateType}>
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
+                    <label>Amount:</label>
+                    
                     <br></br>
-                    <label>
-                        Amount:
-            <input name="amount" type="number" onChange={this.handleChange} />
-                    </label>
+                    <input name="amount" type="number" onChange={this.handleChange} />
+                    <br></br>
                     <br></br>
 
-                    <label>
-                        Metadata:
-            <input name="metadata" type="text" onChange={this.handleChange} />
-                    </label>
+                    <label>Metadata:</label>
                     <br></br>
-                    <label>
-                        Delegates:
-                 {this.state.delegateFields.map((d, fId) => {
+                    <input name="metadata" type="text" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
+                    <label>Delegates:</label>
+                    <br></br>
+                    <div className="delegates-div">
+
+                        {this.state.delegateFields.map((d, fId) => {
                             return (<div key={fId}><input id={fId} name="delegates" type="text" onChange={this.handleChange} /><br></br></div>)
                         })}
-                    </label>
-                    <div className="add-delegate-div" onClick={this.addNewDelegateField}>
-                        <span>+</span>
+
+                        <div className="add-delegate-div" onClick={this.addNewDelegateField}>
+                            <span>+</span>
+                        </div>
                     </div>
+
                     <br></br>
                     <input type="submit" value="Submit" disabled={this.state.notOwner} />
                 </form>
