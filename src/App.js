@@ -11,6 +11,7 @@ import Deploy from "./pages/Deploy"
 import TokenPage from "./pages/Token"
 import LockboxPage from "./pages/Lockbox"
 import { MyWeb3Provider } from "./web3/EthersContext"
+import Web3NotFound from './web3/web3NotFoundPage';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <TokenPage path="/token/:tokenId" />
             <LockboxPage path="/lockbox" />
             <LockboxPage path="/lockbox/:tokenId" />
+            <Web3NotFound path="/web3NotFound" />
           </Router>
         </div>
       </MyWeb3Provider>

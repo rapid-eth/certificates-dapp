@@ -1,5 +1,7 @@
 import React from "react";
 import InfoButton from "../../InfoButton"
+import "./index.css"
+
 const TokenFormWrap = (props) => {
     return (
         <div className="token-form">

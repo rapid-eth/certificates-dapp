@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import {upsertStringToLocalStorageArray} from "../../../utils/localStorage"
+import { upsertStringToLocalStorageArray } from "../../../utils/localStorage"
+import TokenFormWrap from "../TokenFormWrap";
+import "./index.css"
 class CreateForm extends Component {
     constructor(props) {
         super(props);
@@ -30,14 +32,14 @@ class CreateForm extends Component {
     submitTransaction = async () => {
         const { name, symbol, decimalUnits, cap } = this.state
 
-        this.setState({waiting: true})
+        this.setState({ waiting: true })
         let contract = await this.props.factory.deploy(name, symbol, decimalUnits, cap)
-         
+
         console.log(contract)
-        upsertStringToLocalStorageArray("CERTIFICATE_TOKEN_LIST",contract.address)
+        upsertStringToLocalStorageArray("CERTIFICATE_TOKEN_LIST", contract.address)
 
         await contract.deployTransaction.wait()
-        this.setState({waiting: false})
+        this.setState({ waiting: false })
 
         document.getElementById(this.props.id).reset();
     };
@@ -45,30 +47,39 @@ class CreateForm extends Component {
 
     render() {
         return (
-            <form id={this.props.id} onSubmit={this.handleSubmit}>
-                <label>
-                    Token Name:
-            <input name="name" type="text" onChange={this.handleChange} />
-                </label>
-                <br></br>
-                <label>
-                    Token Symbol:
-            <input name="symbol" type="text" onChange={this.handleChange} />
-                </label>
-                <br></br>
+            <TokenFormWrap title="Fill out form to create a new token" helperText="">
+                <form id={this.props.id} onSubmit={this.handleSubmit}>
 
-                <label>
-                    Decimal Units:
-            <input name="decimalUnits" type="number" onChange={this.handleChange} />
-                </label>
-                <br></br>
-                <label>
-                    Mint Cap:
-            <input name="cap" type="number" onChange={this.handleChange} />
-                </label>
-                <br></br>
-                {this.state.waiting ? <div>Please Wait While Token Deploys...</div> : <input type="submit" value="Submit" />}
-            </form>
+                    <label>Token Name:</label>
+                    <br></br>
+
+                    <input name="name" type="text" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
+                    <label>Token Symbol:</label>
+                    <br></br>
+
+                    <input name="symbol" type="text" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
+                    <label>Decimal Units: </label>
+                    <br></br>
+                    <input name="decimalUnits" type="number" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
+                    <label>Mint Cap:  </label>
+                    <br></br>
+
+                    <input name="cap" type="number" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
+                    {this.state.waiting ? <div>Please Wait While Token Deploys...</div> : <input type="submit" value="Submit" />}
+                </form>
+            </TokenFormWrap>
         );
     }
 }

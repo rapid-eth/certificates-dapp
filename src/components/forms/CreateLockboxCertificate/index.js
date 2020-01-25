@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { arrayify } from "../../../web3/web3Utils";
+import TokenFormWrap from "../TokenFormWrap"
+import verbiage from "../../../verbiage.json"
 
 import "./index.css"
 class CreateForm extends Component {
@@ -93,25 +95,27 @@ class CreateForm extends Component {
 
     render() {
         return (
-            <div>
+            <TokenFormWrap title="Create Lockbox Certificate" helperText={verbiage.lockboxCertificate}>
+
                 <form id={this.props.id} onSubmit={this.handleSubmit}>
-                    <label>
-                        <span>Recipient:</span>
-                        <input name="recipient" type="text" onChange={this.handleChange} />
-                    </label>
+                    <label>Recipient:</label>
                     <br></br>
-                    <label>
-                        <span>Amount:</span>
-                        <input name="amount" type="number" onChange={this.handleChange} />
-                    </label>
+                    <input name="recipient" type="text" onChange={this.handleChange} />
                     <br></br>
+
+                    <label>Amount:</label>
+                    <br></br>
+                    <input name="amount" type="number" onChange={this.handleChange} />
+                    <br></br>
+                    <br></br>
+
                     <input type="submit" value="Create Certificate" />
                 </form>
                 {
                     this.state.isCertSigned ? <div><pre><code>{JSON.stringify(this.state.signedCertificate, 0, 2)}</code></pre><button onClick={this.downloadCert}>Download Certificate</button> </div> : null
                 }
-            </div>
-        );
+
+            </TokenFormWrap>);
     }
 }
 

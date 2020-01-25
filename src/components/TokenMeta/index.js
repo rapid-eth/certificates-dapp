@@ -49,11 +49,7 @@ class Token extends Component {
       let supply = await this.getContractValue("totalSupply")
 
       let cap = await this.getContractValue("cap")
-      console.log("cap", cap)
 
-
-
-      console.log(supply.toString())
       this.setState({ symbol, name, owner, supply, decimals, balance, cap }, this.setLoaded)
 
     } catch (err) {

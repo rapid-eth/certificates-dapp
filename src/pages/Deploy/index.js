@@ -1,7 +1,7 @@
 import React from "react";
 import DeployNewToken from "../../components/forms/DeployNewToken"
 import { MyWeb3Consumer } from "../../web3/EthersContext"
-
+import "./index.css"
 
 const Admin = (props) => (
     <MyWeb3Consumer>
@@ -10,9 +10,7 @@ const Admin = (props) => (
                 return (<div>Loading form</div>)
             }
             return (
-                <div className="admin-page">
-                    <h1>Admin Page</h1>
-                    <h3>Fill out the form below to create a new token</h3>
+                <div className="admin-page">                    
                     <DeployNewToken id="new-token-form" factory={exampleCoinFactory} />
                 </div>
             )

@@ -25,7 +25,6 @@ class CreateForm extends Component {
     async componentDidMount() {
         //compare users address to owner, see if it matches
         let ownerAddress = await this.props.contract.owner()
-        console.log(ownerAddress)
 
         if (window.ethereum.selectedAddress.toLowerCase() !== ownerAddress.toLowerCase()) {
             this.setState({ notOwner: true });
@@ -33,7 +32,7 @@ class CreateForm extends Component {
     }
 
     handleChange(event) {
-        console.log(this.state)
+        //console.log(this.state)
 
         if (event.target.name === "delegates") {
             let delegateFields = this.state.delegateFields

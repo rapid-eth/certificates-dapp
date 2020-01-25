@@ -28,7 +28,7 @@ class InfoButton extends Component {
         return (
             <div className="form-info-div" onClick={()=> {console.log("infobutton")}}>
                 <span>?</span>
-                <span class="tooltiptext">{this.state.info}</span>
+                <span className="tooltiptext">{this.state.info}</span>
             </div>
         );
     }

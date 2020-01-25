@@ -30,7 +30,7 @@ export default class ChooseToken extends Component {
     afterMount() {
         this.addToken(this.props.exampleCoin.address)
         let tokenAddressArray = getLocalStorageArray("CERTIFICATE_TOKEN_LIST")
-        console.log(tokenAddressArray)
+        // console.log(tokenAddressArray)
         tokenAddressArray.forEach(t => {
             this.addToken(t)
         });
@@ -43,7 +43,7 @@ export default class ChooseToken extends Component {
         let name = await contract.name()
 
         let token = { address, name, symbol }
-        console.log(token)
+        // console.log(token)
         this.setState({ selectorTokens: [...this.state.selectorTokens, token] })
     }
 

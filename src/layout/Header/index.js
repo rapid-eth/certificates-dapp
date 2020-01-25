@@ -17,7 +17,7 @@ class Header extends Component {
     return (
       <div>
         <header>
-          <Link to="/"><img className="header-img" src="/ethcert.png"></img></Link>
+          <Link to="/"><img className="header-img" src="/ethcert.png" alt=""></img></Link>
           <div className="header-buttons">
             <Link className="header-link-item" to="/deploy">Deploy</Link>
             <Link className="header-link-item" to="/token">Token</Link>

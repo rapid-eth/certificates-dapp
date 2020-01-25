@@ -42,12 +42,10 @@ class CreateForm extends Component {
         let contractEventInterface = this.props.contract.interface.events['CertificateTypeCreated']
         let decodedLogs = decodeLogs(logs, contractEventInterface)
 
-        console.log("decodedLogs", decodedLogs)
         let certificates = []
         for (let i = 0; i < decodedLogs.length; i++) {
             const log = decodedLogs[i];
             let dataString = await this.props.contract.getCertificateData(log.id)
-            console.log(dataString, log.amount.toString())
             let cert = { id: log.id, amount: log.amount.toString(), meta: dataString, delegates: log.delegates }
             certificates.push(cert)
         }
@@ -81,7 +79,6 @@ class CreateForm extends Component {
                 recipient: this.state.recipient,
                 certificateId: this.state.selectedCertificateId
             }
-            console.log(signedCertificate)
             this.setState({ signedCertificate, isCertSigned: true })
         } else {
             alert("No valid cert selected")
@@ -114,7 +111,6 @@ class CreateForm extends Component {
                 selectorList.push(c)
             }
         }
-        console.log("selectorList", selectorList)
 
         return (
             <select name="selectedCertificateId" onChange={this.handleChange}>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ethers } from 'ethers';
-
+import { navigate } from "@reach/router"
+import Web3Error from "./web3Errors"
 
 import getWeb3 from "./getWeb3";
 import getContracts from "./getContracts";
@@ -17,7 +18,8 @@ export class MyWeb3Provider extends Component {
       loaded: false,
       gameList: [],
       refresh: () => { },
-      web3: null
+      web3: null,
+      web3NotFound: false
     }
   }
 
@@ -38,7 +40,6 @@ export class MyWeb3Provider extends Component {
   }
 
   async componentDidUpdate() {
-    console.log("asshole")
     //this.gatherData()
   }
 
@@ -53,7 +54,19 @@ export class MyWeb3Provider extends Component {
       }
 
       const provider = new ethers.providers.Web3Provider(web3.currentProvider)
-      console.log(provider)
+      //console.log(provider)
+      try {
+        await provider.ready
+      } catch (e) {
+        throw new Web3Error("InvalidProviderError", "Provider Invalid or Non-existent")
+      }
+      //console.log(provider.network)
+
+      // check that provider is valid AND is rinkeby network
+      if (provider.network.chainId !== 4) {
+        throw new Web3Error("ChainIDError", "Must be on rinkeby (chainId = 4)")
+      }
+
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
@@ -74,10 +87,19 @@ export class MyWeb3Provider extends Component {
 
       this.setState({ web3, provider, signer, networkId, accounts, exampleCoinContract, exampleCoinFactory, lockboxContract }, this.setLoaded);
     } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
+
+      switch (error.type) {
+        case "InvalidProviderError":
+          alert("No browser web3 provider found, please install a wallet such as metamask to use this app")
+          navigate("/web3NotFound")
+          break;
+        case "ChainIDError":
+          alert("Please change your metamask network to rinkeby")
+          navigate("/web3NotFound")
+          break;
+        default:
+          break;
+      }
       console.error(error);
     }
 

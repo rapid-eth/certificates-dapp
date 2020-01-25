@@ -1,5 +1,12 @@
-.lockbox-box-div {
-    border-style: dashed;
-    border-color: rgb(46, 165, 42);
-    margin: 10px;
+
+
+.about-lockbox-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;/*  doesnt work */
+} 
+
+.inner-about-lockbox-div {
+    margin-left: 10%;
+    width: 70%;
 }

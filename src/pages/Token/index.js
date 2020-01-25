@@ -37,11 +37,10 @@ class Token extends Component {
 
   async loadContract() {
     try {
-      console.log("loading contract")
-      let provider = this.props.provider
-
-      let templateCode = await provider.getCode(this.props.templateAddress)
-      let code = await provider.getCode(this.props.tokenAddress)
+      //console.log("loading contract")
+      // let provider = this.props.provider
+      // let templateCode = await provider.getCode(this.props.templateAddress)
+      // let code = await provider.getCode(this.props.tokenAddress)
 
       let contracts = getContracts(this.props.networkId)
       const exampleCoinJSON = contracts.exampleCoin
