@@ -114,7 +114,7 @@ class CreateForm extends Component {
 
         return (
             <select className="create-selector" name="selectedCertificateId" onChange={this.handleChange}>
-                <option key={"-1"} value={""}>Please select a certificate...</option>
+                <option key={"-1"} value={""}>Please select a Certificate Type...</option>
 
                 {selectorList.map((cert, idx) => {
                     if (cert) {
